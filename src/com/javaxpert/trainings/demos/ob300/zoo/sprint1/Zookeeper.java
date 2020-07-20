@@ -1,5 +1,8 @@
 package com.javaxpert.trainings.demos.ob300.zoo.sprint1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Zookeeper {
     private Zoo myZoo;
     private String[] refCris;
@@ -15,25 +18,24 @@ public class Zookeeper {
     public boolean callAnimals(){
         boolean result =true;
         // get the list of animals in the zoo NOW !!
-        Animal[] animals_live  = myZoo.listAnimals();
-        String[] cris = new String[animals_live.length];
-        int counter=0;
+        List<Animal> animals_live  = myZoo.listAnimals();
+        List<String> cris = new ArrayList<>();
+
         // asks each one to say who is it
         for (Animal a : animals_live){
             if(a!=null) {
                 String cri = a.crier();
                 System.out.println("Animal invoked" + cri);
-                cris[counter++] = cri;
+                cris.add(cri);
             }
         }
 
-        System.err.println(counter + " animals are  peesent");
+        System.err.println(cris.size()+ " animals are  peesent");
         // now we have the list of crier() results
 
         // how to check it is equal to the expected list?
-        if(counter != refCris.length){
+        if(cris.size()!= refCris.length){
             result=false;
-            System.err.println("Bad check arrays length is wrong");
         }
         // check the contents  too
         //@TODO
