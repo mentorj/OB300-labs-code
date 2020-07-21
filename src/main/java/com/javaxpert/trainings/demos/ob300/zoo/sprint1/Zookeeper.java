@@ -1,5 +1,7 @@
 package com.javaxpert.trainings.demos.ob300.zoo.sprint1;
 
+import com.google.common.collect.Maps;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,8 +63,9 @@ public class Zookeeper {
             }
         }
 
-        // now compares 2 maps using the standard equals method
-        result= (refCris.equals(obtained));
+        // this check using Google Guava MapDifference is safer
+        // works even if keys/values do not override equals method
+        result= Maps.difference(obtained,refCris).areEqual();
 
         System.out.println("zookeeper::callAnimals : result is "+ result);
         return result;
