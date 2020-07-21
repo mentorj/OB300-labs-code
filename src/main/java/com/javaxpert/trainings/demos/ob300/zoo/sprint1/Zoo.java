@@ -14,7 +14,7 @@ public class Zoo {
 
     public void addAnimal(Animal a){
         System.out.println("adding into the zoo : " + a.toString());
-
+        liveAnimals.add(a);
     }
 
     public List<Animal> listAnimals(){
