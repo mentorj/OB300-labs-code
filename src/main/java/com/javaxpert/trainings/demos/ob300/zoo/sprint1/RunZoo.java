@@ -12,6 +12,6 @@ public class RunZoo {
 
         Zookeeper manfred = new Zookeeper(zoo);
         boolean result =manfred.callAnimals();
-        System.out.println("Problem detected ?="+ !result);
+        System.out.println("callAnimals returns ="+ result);
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 public class Zookeeper {
     private Zoo myZoo;
     private Map<String,Integer> refCris;
-    private final static String[] DEFAULT_CRIS_DB= new String[]{"Wouargh", "Wouargh", "CoinCoin"};
+    private final static String[] DEFAULT_CRIS_DB= new String[]{"Wouargh!!!", "Wouargh!!!", "CoinCoin"};
     public Zookeeper(final Zoo zoo){
         myZoo=zoo;
         readReferenceDatabase();
@@ -49,10 +49,6 @@ public class Zookeeper {
         System.err.println(cris.size()+ " animals are  peesent");
         // now we have the list of crier() results
 
-        // how to check it is equal to the expected list?
-        if(cris.size()!= refCris.size()){
-            result=false;
-        }
         // craetes a map with obtained strings to check against reference database
         Map<String,Integer> obtained = new HashMap();
         for(String cri:cris){
@@ -65,16 +61,10 @@ public class Zookeeper {
             }
         }
 
-        // now compares 2 maps
-        result=(obtained.size()==refCris.size());
-        System.err.println("Checking collections sizes: got "+ refCris.size() + " in refDb, got "+ obtained.size() + " from live animals");
-        for(String cri:refCris.keySet()){
-            if(!obtained.containsKey(cri)){
-                result=false;
-                System.err.println("Key =" + cri + " from ref database not found in live database");
-            }
-            result&=refCris.get(cri)==obtained.get(cri);
-        }
+        // now compares 2 maps using the standard equals method
+        result= (refCris.equals(obtained));
+
+        System.out.println("zookeeper::callAnimals : result is "+ result);
         return result;
     }
 }
